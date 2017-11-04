@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
-import { FlatList, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
+import { FlatList } from 'react-native';
 import { Spinner } from '../components';
+import CountryItem from './CountryItem';
 import { httpClient } from '../config';
 
 export default class Countries extends Component {
   state = {
-    loading: true,
-    countries: []
+    countries: [],
+    loading: true
+  };
+
+  static propTypes = {
+    navigation: PropTypes.object.isRequired
   };
 
   componentDidMount() {
     httpClient('/all').then((response) => {
-      const allCountries = response.data.map(({ flag, name, region }) => (
+      const allCountries = response.data.map(({ alpha3Code, name, region, population }) => (
         {
-          flag,
+          alpha3Code,
           name,
-          region
+          region,
+          population
         }
       ));
 
@@ -25,6 +32,18 @@ export default class Countries extends Component {
       });
     });
   }
+
+  renderItem = ({ index, item }) => {
+    const { navigation } = this.props;
+
+    return (
+      <CountryItem
+        key={Math.random()}
+        navigation={navigation}
+        {...item}
+      />
+    );
+  };
 
   render() {
     const { countries, loading } = this.state;
@@ -36,10 +55,9 @@ export default class Countries extends Component {
     return (
       <FlatList
         data={countries}
+        keyExtractor={({ name }) => name}
         renderItem={this.renderItem}
       />
     );
   }
 }
-
-const styles = StyleSheet.flatten({});
