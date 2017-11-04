@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FlatList } from 'react-native';
-import { Spinner } from '../components';
+import { Header, Spinner } from '../components';
 import CountryItem from './CountryItem';
 import { httpClient } from '../config';
 
@@ -13,6 +13,10 @@ export default class Countries extends Component {
 
   static propTypes = {
     navigation: PropTypes.object.isRequired
+  };
+
+  static navigationOptions = {
+    ...Header({ title: 'Country list' })
   };
 
   componentDidMount() {

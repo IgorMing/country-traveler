@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, View } from 'react-native';
-
-function renderTimezones(timezones) {
-  return timezones.map((timezone, index) => <Text key={index}>{timezone}</Text>);
-}
+import { View } from 'react-native';
+import CountryDetailItem from './CountryDetailItem';
 
 const CountryForm = ({
   name,
@@ -15,25 +12,12 @@ const CountryForm = ({
   timezones
 }) =>
   <View>
-    <View>
-      <Text>Name: {name}</Text>
-    </View>
-    <View>
-      <Text>Capital: {capital}</Text>
-    </View>
-    <View>
-      <Text>Region: {region}</Text>
-    </View>
-    <View>
-      <Text>SubRegion: {subregion}</Text>
-    </View>
-    <View>
-      <Text>Population: {population}</Text>
-    </View>
-    <View>
-      <Text>Timezones:</Text>
-      {renderTimezones(timezones)}
-    </View>
+    <CountryDetailItem label="Name" value={name} />
+    <CountryDetailItem label="Capital" value={capital} />
+    <CountryDetailItem label="Region" value={region} />
+    <CountryDetailItem label="SubRegion" value={subregion} />
+    <CountryDetailItem label="Population" value={population} />
+    <CountryDetailItem label="Timezones" value={timezones} />
   </View>;
 
 CountryForm.propTypes = {

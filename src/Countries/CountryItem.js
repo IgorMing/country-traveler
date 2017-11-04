@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 
+import { COMMON_STYLE } from '../style';
+
 const CountryItem = ({
   alpha3Code,
   name,
@@ -36,13 +38,12 @@ CountryItem.propTypes = {
   population: PropTypes.number.isRequired
 };
 
-const DISTANCE_SIDES = 15;
 const styles = StyleSheet.flatten({
   container: {
     flex: 1,
     flexDirection: 'row',
     height: 80,
-    marginHorizontal: DISTANCE_SIDES,
+    marginHorizontal: COMMON_STYLE.distanceSides,
     borderBottomColor: 'lightgrey',
     borderBottomWidth: StyleSheet.hairlineWidth
   },
@@ -51,8 +52,8 @@ const styles = StyleSheet.flatten({
     justifyContent: 'center'
   },
   leftContainer__text: {
-    fontSize: 18,
-    paddingLeft: DISTANCE_SIDES
+    fontSize: 16,
+    paddingLeft: COMMON_STYLE.distanceSides
   },
   rightContainer: {
     flex: 1,
@@ -62,7 +63,7 @@ const styles = StyleSheet.flatten({
     fontSize: 12,
     color: 'grey',
     textAlign: 'right',
-    paddingRight: DISTANCE_SIDES
+    paddingRight: COMMON_STYLE.distanceSides
   }
 });
 
