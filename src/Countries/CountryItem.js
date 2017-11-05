@@ -57,7 +57,7 @@ const styles = StyleSheet.flatten({
     borderBottomWidth: 1
   },
   leftContainer: {
-    flex: 4,
+    flex: 2,
     justifyContent: 'center'
   },
   leftContainer__text: {

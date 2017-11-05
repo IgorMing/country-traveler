@@ -6,14 +6,11 @@ import Countries from '.';
 import CountryDetails from './CountryDetails';
 
 class Navigator extends Component {
-  static navigationOptions = ({ navigation, screenProps }) => {
-
-    return {
-      title: 'Search',
-      tabBarIcon: ({ tintColor }) =>
-        <Ionicons name="md-search" size={30} color={tintColor} />
-    };
-  };
+  static navigationOptions = ({ navigation, screenProps }) => ({
+    title: 'Search',
+    tabBarIcon: ({ tintColor }) =>
+      <Ionicons name="md-search" size={30} color={tintColor} />
+  });
 
   render() {
     const EstablishmentStackNavigator = StackNavigator(

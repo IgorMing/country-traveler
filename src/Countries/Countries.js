@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FlatList, StyleSheet, TextInput, View } from 'react-native';
+import {
+  FlatList,
+  Platform,
+  StatusBar,
+  StyleSheet,
+  TextInput,
+  View
+} from 'react-native';
 import { Spinner } from '../components';
 import CountryItem from './CountryItem';
 import { httpClient } from '../utils/config';
@@ -18,7 +25,10 @@ export default class Countries extends Component {
   };
 
   static navigationOptions = {
-    title: 'Country list'
+    title: 'Country list',
+    headerStyle: {
+      marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
+    }
   };
 
   componentDidMount() {
@@ -54,8 +64,10 @@ export default class Countries extends Component {
   filterCountries(countries, search) {
     return countries.filter((country) => {
       const { name, region } = country;
+      const lowerCaseSearch = search.toLowerCase();
 
-      return name.includes(search) || region.includes(search);
+      return name.toLowerCase().includes(lowerCaseSearch) ||
+        region.toLowerCase().includes(lowerCaseSearch);
     });
   }
 

@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import { SQLite } from 'expo';
-import { Alert, Button, Modal, Text, StyleSheet, ScrollView, View } from 'react-native';
+import {
+  Alert,
+  Button,
+  Modal,
+  Platform,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import PropTypes from 'prop-types';
 import _omit from 'lodash/omit';
@@ -31,7 +41,10 @@ export default class CountryDetails extends Component {
   };
 
   static navigationOptions = ({ navigation }) => ({
-    title: navigation.state.params.name
+    title: navigation.state.params.name,
+    headerStyle: {
+      marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight
+    }
   });
 
   componentDidMount() {

@@ -1,12 +1,6 @@
-# React Native Boilerplate
+# Country traveler
 
-### On development
+A simple test just to list all countries in the world and showing them.
 
-An improved boilerplate based on [create-react-native-app](https://github.com/react-community/create-react-native-app), that uses some important tools on React Native development.
+Everything consumed from the endpoint [`Rest Countries`](https://restcountries.eu/).
 
-A list of already configured things
----
-* Expo
-* ESLint
-* [React Navigation](https://reactnavigation.org/)
-* Redux (with [duck](https://github.com/erikras/ducks-modular-redux) concept implemented)
