@@ -1,14 +1,30 @@
 import React from 'react';
-import { StackNavigator } from 'react-navigation';
+import { TabNavigator } from 'react-navigation';
 
-import Countries from './Countries';
-import CountryDetails from './Countries/CountryDetails';
+import CountryStackNavigator from './Countries/CountryStackNavigator';
+import MyVisits from './MyVisits/MyVisits';
 
-const MainStackNavigator = StackNavigator({
-  Countries: { screen: Countries },
-  CountryDetails: { screen: CountryDetails }
-});
+const MainTabNavigator = TabNavigator({
+  Countries: { screen: CountryStackNavigator },
+  MyVisits: { screen: MyVisits }
+}, {
+  tabBarPosition: 'bottom',
+  tabBarOptions: {
+    activeTintColor: '#fff',
+    inactiveTintColor: '#fff',
+    labelStyle: {
+      fontSize: 12,
+      marginBottom: 2
+    },
+    showIcon: true,
+    indicatorStyle: {
+      backgroundColor: 'white'
+    }
+  }
+}
 
-const MainNavigator = () => <MainStackNavigator />;
+);
+
+const MainNavigator = () => <MainTabNavigator />;
 
 export default MainNavigator;

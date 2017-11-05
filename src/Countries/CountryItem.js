@@ -3,6 +3,15 @@ import PropTypes from 'prop-types';
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 
 import { COMMON_STYLE } from '../style';
+import { NO_REGION } from '../utils/common';
+
+function renderRegion(region) {
+  if (!region) {
+    return <Text style={styles.leftContainer__text}>{NO_REGION}</Text>;
+  }
+
+  return <Text style={styles.leftContainer__text}>({region})</Text>;
+}
 
 const CountryItem = ({
   alpha3Code,
@@ -21,7 +30,7 @@ const CountryItem = ({
     >
       <View style={styles.leftContainer}>
         <Text style={styles.leftContainer__text}>{name}</Text>
-        <Text style={styles.leftContainer__text}>({region})</Text>
+        {renderRegion(region)}
       </View>
       <View style={styles.rightContainer}>
         <Text style={styles.rightContainer__text}>Population: {population}</Text>
@@ -45,7 +54,7 @@ const styles = StyleSheet.flatten({
     height: 80,
     marginHorizontal: COMMON_STYLE.distanceSides,
     borderBottomColor: 'lightgrey',
-    borderBottomWidth: StyleSheet.hairlineWidth
+    borderBottomWidth: 1
   },
   leftContainer: {
     flex: 4,

@@ -30,6 +30,7 @@
     "extends": "expo"
   },
   "dependencies": {
+    "@expo/vector-icons": "^6.1.0",
     "axios": "^0.17.0",
     "expo": "^20.0.0",
     "lodash": "^4.17.4",

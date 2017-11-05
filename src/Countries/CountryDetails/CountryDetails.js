@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import Expo, { SQLite } from 'expo';
+import { SQLite } from 'expo';
 import { Alert, Button, Modal, Text, StyleSheet, ScrollView, View } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import PropTypes from 'prop-types';
 import _omit from 'lodash/omit';
 
-import Database from '../../database';
-import { httpClient } from '../../config';
-import { Header, Spinner } from '../../components';
+import Database from '../../utils/database';
+import { httpClient } from '../../utils/config';
+import { Spinner } from '../../components';
 import CountryForm from './CountryForm';
 
 const db = SQLite.openDatabase({ name: Database.NAME });
@@ -30,7 +30,7 @@ export default class CountryDetails extends Component {
     navigation: PropTypes.object.isRequired
   };
 
-  static navigationOptions = ({ navigation }) => Header({
+  static navigationOptions = ({ navigation }) => ({
     title: navigation.state.params.name
   });
 
@@ -45,9 +45,7 @@ export default class CountryDetails extends Component {
       }
     } = this.props;
 
-    this.alpha3Code = alpha3Code;
-
-    httpClient(`/alpha/${this.alpha3Code}`).then(({ data }) => {
+    httpClient(`/alpha/${alpha3Code}`).then(({ data }) => {
       const {
         name,
         capital,
@@ -70,7 +68,7 @@ export default class CountryDetails extends Component {
 
     db.transaction((tx) => {
       tx.executeSql(
-        `create table if not exists ${Database.TABLES.VISITS} (id integer primary key not null, country text, visitDate text);`
+        `create table if not exists ${Database.TABLES.VISITS} (id integer primary key not null, country text, region text, visitDate text);`
       );
     });
   }
@@ -87,15 +85,18 @@ export default class CountryDetails extends Component {
         navigation
       },
       state: {
-        date
+        date,
+        name,
+        region
       }
     } = this;
 
     db.transaction((tx) => {
       tx.executeSql(
-        `insert into ${Database.TABLES.VISITS} (country, visitDate) values (?, ?);`,
+        `insert into ${Database.TABLES.VISITS} (country, region, visitDate) values (?, ?, ?);`,
         [
-          this.alpha3Code,
+          name,
+          region,
           date
         ],
         () => navigation.goBack()
@@ -184,7 +185,7 @@ export default class CountryDetails extends Component {
             onPress={this.onClickButton}
             style={styles.button}
             title="I visited here"
-            color="#841584"
+            color="green"
             accessibilityLabel="I visited this country!"
           />
         </View>
