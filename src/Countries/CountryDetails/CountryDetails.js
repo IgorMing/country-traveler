@@ -81,7 +81,8 @@ export default class CountryDetails extends Component {
 
     db.transaction((tx) => {
       tx.executeSql(
-        `create table if not exists ${Database.TABLES.VISITS} (id integer primary key not null, country text, region text, visitDate text);`
+        `create table if not exists ${Database.TABLES.VISITS}
+          (id integer primary key not null, country text, region text, visitDate text);`
       );
     });
   }

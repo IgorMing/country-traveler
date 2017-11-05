@@ -16,7 +16,10 @@ const styles = StyleSheet.create({
 });
 
 Spinner.propTypes = {
-  size: PropTypes.oneOf(['small', 'large'])
+  size: PropTypes.oneOf([
+    'small',
+    'large'
+  ])
 };
 
 Spinner.defaultProps = {

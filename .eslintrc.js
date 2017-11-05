@@ -67,7 +67,7 @@ module.exports = {
     "guard-for-in": "error",
     "handle-callback-err": "error",
     "id-blacklist": "error",
-    "id-length": "error",
+    "id-length": ["error", { exceptions: ['_'] }],
     "id-match": "error",
     "indent": ["error", 2, { SwitchCase: 1 }],
     "indent-legacy": "off",

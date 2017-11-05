@@ -19,25 +19,22 @@ const CountryItem = ({
   navigation,
   region,
   population
-}) => {
-  return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => navigation.navigate('CountryDetails', {
-        alpha3Code,
-        name
-      })}
-    >
-      <View style={styles.leftContainer}>
-        <Text style={styles.leftContainer__text}>{name}</Text>
-        {renderRegion(region)}
-      </View>
-      <View style={styles.rightContainer}>
-        <Text style={styles.rightContainer__text}>Population: {population}</Text>
-      </View>
-    </TouchableOpacity>
-  );
-};
+}) =>
+  <TouchableOpacity
+    style={styles.container}
+    onPress={() => navigation.navigate('CountryDetails', {
+      alpha3Code,
+      name
+    })}
+  >
+    <View style={styles.leftContainer}>
+      <Text style={styles.leftContainer__text}>{name}</Text>
+      {renderRegion(region)}
+    </View>
+    <View style={styles.rightContainer}>
+      <Text style={styles.rightContainer__text}>Population: {population}</Text>
+    </View>
+  </TouchableOpacity>;
 
 CountryItem.propTypes = {
   alpha3Code: PropTypes.string.isRequired,

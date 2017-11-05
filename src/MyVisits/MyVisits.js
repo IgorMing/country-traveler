@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { SQLite } from 'expo';
-import { StyleSheet, ScrollView, RefreshControl, Text, View } from 'react-native';
+import { StatusBar, ScrollView, RefreshControl, Platform } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import Database from '../utils/database';
@@ -47,6 +47,7 @@ export default class MyVisits extends Component {
 
     return (
       <ScrollView
+        style={{ marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight }}
         refreshControl={
           <RefreshControl
             refreshing={this.state.loading}

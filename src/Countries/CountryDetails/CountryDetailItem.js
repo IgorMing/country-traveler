@@ -15,7 +15,10 @@ const Item = ({ label, value }) => {
   }
 
   return (
-    <View style={[styles.container, styles.containerSingle]}>
+    <View style={[
+      styles.container,
+      styles.containerSingle
+    ]}>
       <Text style={styles.label}>{label}: </Text>
       <Text style={styles.value}>{value}</Text>
     </View>
