@@ -12,7 +12,7 @@ Clone the project
 git clone git@github.com:IgorMing/country-traveler.git
 ```
 
-Now, just go to into the project folder, and let's install the dependencies
+Now, just go into the project folder, and let's install the dependencies
 ```
 yarn
 ```
